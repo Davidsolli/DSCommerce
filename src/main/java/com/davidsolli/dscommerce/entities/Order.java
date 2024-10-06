@@ -28,7 +28,7 @@ public class Order {
     private Payment payment;
 
     @OneToMany(mappedBy = "id.order")
-    private Set<OrderItem> itens = new HashSet<>();
+    private Set<OrderItem> items = new HashSet<>();
 
     public Order() {}
 
@@ -81,11 +81,11 @@ public class Order {
     }
 
     public Set<OrderItem> getItens() {
-        return itens;
+        return items;
     }
 
     public List<Product> getProducts() {
-        return itens.stream().map(x -> x.getProduct()).toList();
+        return items.stream().map(OrderItem::getProduct).toList();
     }
 
     @Override

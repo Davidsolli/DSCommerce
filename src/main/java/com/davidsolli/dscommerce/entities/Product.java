@@ -89,7 +89,7 @@ public class Product {
     }
 
     public List<Order> getOrders() {
-        return itens.stream().map(x -> x.getOrder()).toList();
+        return itens.stream().map(OrderItem::getOrder).toList();
     }
 
     @Override
