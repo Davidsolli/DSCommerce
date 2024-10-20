@@ -1,7 +1,9 @@
 package com.davidsolli.dscommerce.services;
 
+import com.davidsolli.dscommerce.DTO.CategoryDTO;
 import com.davidsolli.dscommerce.DTO.ProductDTO;
 import com.davidsolli.dscommerce.DTO.ProductMinDTO;
+import com.davidsolli.dscommerce.entities.Category;
 import com.davidsolli.dscommerce.entities.Product;
 import com.davidsolli.dscommerce.repositories.ProductRepository;
 import com.davidsolli.dscommerce.services.exceptions.DatabaseException;
@@ -70,5 +72,11 @@ public class ProductService {
         entity.setDescription(dto.getDescription());
         entity.setPrice(dto.getPrice());
         entity.setImgUrl(dto.getImgUrl());
+        entity.getCategories().clear();
+        for (CategoryDTO catDTO: dto.getCategories()) {
+            Category category = new Category();
+            category.setId(catDTO.getId());
+            entity.getCategories().add(category);
+        }
     }
 }
